@@ -6,9 +6,9 @@ def listswap(slist:list, a:int, b:int|None=None):
 def Qsort(slist:list, start:int=0, end:int|None=None)->None:
     """퀵정렬을 실행합니다."""
     if end == None : end = slist.__len__()
-    if slist[start:end].__len__() <= 1 : return
-    elif slist[start:end].__len__() == 2 :
-        if slist[start] > slist[start+1] : listswap(slist, start)
+    if slist[start:end].__len__() <= 2 : 
+        if (slist[start:end].__len__() == 2) and (slist[start] > slist[start+1]) : 
+            listswap(slist, start)
         return
     pivot = start
     for i in range(start, end-1) :
@@ -22,9 +22,9 @@ def Qsort(slist:list, start:int=0, end:int|None=None)->None:
 def Msort(slist:list, start:int=0, end:int|None=None)->None:
     """머지정렬을 실행합니다."""
     if end == None : end=slist.__len__()
-    if slist[start:end].__len__() <= 1 : return
-    elif slist[start:end].__len__() == 2 :
-        if slist[start] > slist[start+1] : listswap(slist, start)
+    if slist[start:end].__len__() <= 2 :
+        if (slist[start:end].__len__() == 2) and (slist[start] > slist[start+1]) : 
+            listswap(slist, start)
         return
     Msort(slist, start,(start+end)//2)
     Msort(slist, (start+end)//2, end)
@@ -43,18 +43,21 @@ def Bsort(slist:list):
         for j in range (i,len(slist)) :
             if slist[i] > slist[j] : listswap(slist, i, j)
 
+
+
 if __name__=="__main__" :
     import random as R
     l=[]
-    c=R.randint(0,490)
-    for _ in range(500) : l.append(R.randint(0,65536))
-    Bsort(l)
-    print(l[c:c+10]+[l[-1],l[0]])
-    R.shuffle(l)
+    #c=R.randint(0,490)
+    for _ in range(60000) : l.append(R.randint(0,65536))
+    #Bsort(l)
+    #print(l[c:c+10]+[l[-1],l[0]])
+    #R.shuffle(l)
     #print(l)
     Msort(l)
-    print(l[c:c+10]+[l[-1], l[0]])
+    #print(l[c:c+10]+[l[-1], l[0]])
     R.shuffle(l)
     #print(l)
     Qsort(l)
-    print(l[c:c+10]+[l[-1], l[0]])
+    #print(l[c:c+10]+[l[-1], l[0]])
+    R.shuffle(l)
